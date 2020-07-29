@@ -1,0 +1,21 @@
+.status {
+  text-transform: capitalize;
+  border-radius: 6px;
+  padding: 4px 8px;
+  font-size: 14px;
+}
+
+.successful {
+  color: #096320;
+  background-color: #81e39a;
+}
+
+.refunded {
+  color: #966417;
+  background-color: #fed9a0;
+}
+
+.failed {
+  color: #750b05;
+  background-color: #f2a6a2;
+}

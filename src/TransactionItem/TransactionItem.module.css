@@ -1,0 +1,28 @@
+.transactionItem + .transactionItem {
+  border-top: 1px solid #f2f3f4;
+}
+
+.transactionItem > * {
+  padding: 14px 4px;
+}
+
+.transactionItem > *:first-child {
+  padding-left: 14px;
+}
+
+.transactionItem > *:last-child {
+  padding-right: 14px;
+}
+
+.transactionItem.failed > .payment {
+  opacity: 0.5;
+}
+
+.payment {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.payment > * + * {
+  margin-left: 8px;
+}

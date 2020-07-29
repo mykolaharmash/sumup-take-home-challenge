@@ -1,0 +1,12 @@
+.spinner {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 50px 0;
+}
+
+.spinnerImage {
+  width: 24px;
+  height: 24px;
+  background-image: url('/spinner.svg');
+}

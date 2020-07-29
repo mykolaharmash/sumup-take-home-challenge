@@ -1,16 +1,35 @@
-import express from 'express';
-import bodyParser from 'body-parser';
+import express from 'express'
+import bodyParser from 'body-parser'
+import cors from 'cors'
+import { loadTransactions } from './loadTransactions'
+import { transactionsRoute } from './routes/transactionsRoute'
 
-const app = express();
-const port = process.env.PORT || 5000;
+process.env.TZ = 'UTC'
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+const transactionsList = loadTransactions()
 
-app.get('/api/hello', (req, res) => {
-  res.send({ express: 'Hello From Backend' });
-});
+const app = express()
+const port = process.env.PORT || 5000
+
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(cors())
+app.use((req, res, next) => {
+  req.transactions = transactionsList
+  next()
+})
+
+app.get('/api/transactions', transactionsRoute)
+
+app.use(function (err, req, res, next) {
+  console.log(err)
+  res
+    .status(500)
+    .json({ error: `Unexpected server-side error "${err.message}"` })
+
+  next(err)
+})
 
 app.listen(port, () =>
-  console.log(`Listening on port ${port} | http://localhost:5000`)
-);
+  console.log(`Listening on port ${port} | http://localhost:${port}`)
+)

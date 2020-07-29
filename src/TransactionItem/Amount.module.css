@@ -1,0 +1,12 @@
+.amount {
+  display: inline-flex;
+  align-items: baseline;
+}
+
+.sign {
+  margin-right: 4px;
+}
+
+.failed {
+  text-decoration: line-through;
+}

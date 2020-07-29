@@ -6,9 +6,13 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "NODE_ICU_DATA=node_modules/full-icu react-scripts test",
     "eject": "react-scripts eject",
-    "start:server": "nodemon server/index.js --exec babel-node --watch server/**/*.js"
+    "start:server": "nodemon server/index.js --exec babel-node --watch server/**/*.js",
+    "test:server": "jest --config=server/jest.config.js --watch",
+    "prettify": "prettier --write ./src/**/*.{js,css} ./server/**/*.js",
+    "docker:build": "docker build -t sumup-sales:latest .",
+    "docker:run": "docker run --rm -p 5000:5000 --name sumup-sales sumup-sales:latest"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -21,6 +25,7 @@
   ],
   "dependencies": {
     "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
     "express": "^4.16.4",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
@@ -34,9 +39,11 @@
     "babel-jest": "24.7.1",
     "enzyme": "^3.7.0",
     "enzyme-adapter-react-16": "^1.7.0",
+    "full-icu": "^1.3.1",
     "jest-dom": "^3.0.0",
     "jest-enzyme": "^7.0.1",
     "nodemon": "^1.18.6",
+    "prettier": "^2.0.5",
     "react-test-renderer": "^16.6.3"
   }
 }

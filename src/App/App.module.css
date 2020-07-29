@@ -1,0 +1,14 @@
+.app {
+  height: 100%;
+  overflow-y: auto;
+  background-color: #f2f3f4;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 30px;
+  box-sizing: border-box;
+}
+
+.content {
+  width: 500px;
+}
