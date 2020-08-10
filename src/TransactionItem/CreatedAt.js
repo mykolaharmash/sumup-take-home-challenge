@@ -1,5 +1,5 @@
-import { toLocalDate } from '../utils'
+import { toLocalTime } from '../utils'
 
 export function CreatedAt({ date }) {
-  return toLocalDate(new Date(date))
+  return toLocalTime(date)
 }

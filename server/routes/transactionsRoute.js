@@ -1,5 +1,5 @@
 export function transactionsRoute(req, res) {
-  const {offset, limit, filters} = req
+  const { offset, limit, filters } = req
 
   const transactions = req.transactions
     .filter((transaction) =>

@@ -3,7 +3,7 @@ import styles from './FilterToggle.module.css'
 
 export function FilterToggle({ label, enabled, onChange }) {
   return (
-    <button 
+    <button
       className={`${styles.filterToggle} ${enabled ? styles.enabled : ''}`}
       onClick={() => onChange(!enabled)}
     >

@@ -2,7 +2,7 @@ import { PAYMENT_METHOD_LIST } from './paymentMethods'
 import { STATUS_LIST } from './statuses'
 
 function validatePaymentMethods(paymentMethods) {
-  return paymentMethods.map(method => {
+  return paymentMethods.map((method) => {
     if (!PAYMENT_METHOD_LIST.includes(method)) {
       throw new Error(`Unsupported value for payment method filter: ${method}`)
     }
@@ -12,7 +12,7 @@ function validatePaymentMethods(paymentMethods) {
 }
 
 function validateStatuses(statuses) {
-  return statuses.map(status => {
+  return statuses.map((status) => {
     if (!STATUS_LIST.includes(status)) {
       throw new Error(`Unsupported value for status filter: ${status}`)
     }
@@ -24,7 +24,7 @@ function validateStatuses(statuses) {
 function parsePaymentMethodsFilter(req) {
   const paymentMethods = (req.query.paymentMethods || '')
     .split(',')
-    .filter(item => item !== '')
+    .filter((item) => item !== '')
 
   console.log(paymentMethods)
 
@@ -38,7 +38,7 @@ function parsePaymentMethodsFilter(req) {
 function parseStatusesFilter(req) {
   const statuses = (req.query.statuses || '')
     .split(',')
-    .filter(item => item !== '')
+    .filter((item) => item !== '')
 
   if (statuses.length === 0) {
     return STATUS_LIST
@@ -50,7 +50,7 @@ function parseStatusesFilter(req) {
 function parseOffset(req) {
   const offset = parseInt(req.query.offset || 0, 10)
 
-  if (isNaN(offset)|| offset < 0) {
+  if (isNaN(offset) || offset < 0) {
     throw new Error(
       `'offset' parameter should be positive number. Provided offset=${req.query.offset}.`
     )
@@ -62,7 +62,7 @@ function parseOffset(req) {
 function parseLimit(req) {
   const limit = parseInt(req.query.limit || 0, 10)
 
-  if (isNaN(limit)|| limit < 0) {
+  if (isNaN(limit) || limit < 0) {
     throw new Error(
       `'limit' parameter should be positive number. Provided limit=${req.query.limit}.`
     )
@@ -76,7 +76,7 @@ export function parseQuery(req, res, next) {
   req.limit = parseLimit(req)
   req.filters = {
     paymentMethods: parsePaymentMethodsFilter(req),
-    statuses: parseStatusesFilter(req)
+    statuses: parseStatusesFilter(req),
   }
 
   next()
