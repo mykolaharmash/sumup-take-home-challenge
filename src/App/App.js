@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import styles from './App.module.css'
 import { Header } from '../Header/Header'
-import { TransactionsList } from '../TransactionsList/TransactionsList'
+import { Transactions } from '../Transactions/Transactions'
 
 class App extends Component {
   render() {
@@ -9,7 +9,7 @@ class App extends Component {
       <div className={styles.app}>
         <div className={styles.content}>
           <Header />
-          <TransactionsList />
+          <Transactions />
         </div>
       </div>
     )
