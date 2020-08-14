@@ -1,14 +1,25 @@
-export function transactionsRoute(req, res) {
-  const offset = parseInt(req.query.offset || 0, 10)
-  const limit = parseInt(req.query.limit || 100, 10)
+import { STATUS_LIST } from '../lib/statuses'
+import { PAYMENT_METHOD_LIST } from '../lib/paymentMethods'
 
-  if (isNaN(offset) || isNaN(limit) || offset < 0 || limit < 0) {
-    throw new Error(
-      `'offset' and 'limit' parameters should be positive numbers. Provided offset=${req.query.offset}, limit=${req.query.limit}.`
-    )
+function filterTransactions(transactions, filters) {
+  let result = transactions
+  
+  if (filters.paymentMethods.length !== PAYMENT_METHOD_LIST.length)  {
+    result = result.filter((transaction) => filters.paymentMethods.includes(transaction.method))
   }
 
-  res.send({
-    transactions: req.transactions.slice(offset, offset + limit),
-  })
+  if (filters.statuses.length !== STATUS_LIST.length)  {
+    result = result.filter((transaction) => filters.statuses.includes(transaction.status))  
+  }
+
+  return result  
+}
+
+export function transactionsRoute(req, res) {
+  const {offset, limit, filters} = req
+
+  const transactions = filterTransactions(req.transactions, filters)
+    .slice(offset, offset + limit)
+
+  res.send({transactions})
 }
