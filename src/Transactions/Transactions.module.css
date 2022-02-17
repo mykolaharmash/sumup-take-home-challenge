@@ -1,0 +1,15 @@
+.transactions {
+}
+
+.content {
+  display: flex;
+}
+
+.list {
+  width: 100%;
+  flex-grow: 1;
+}
+
+.filters {
+  flex-grow: 0;
+}

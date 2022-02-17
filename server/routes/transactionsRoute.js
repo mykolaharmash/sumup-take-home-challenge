@@ -15,6 +15,23 @@ function filterTransactions(transactions, filters) {
   return result  
 }
 
+// const totals {
+
+//   'date-1': 200,
+//   'date-2': 2000
+// }
+
+// transactions.reduce((result, tr) => {
+//   if (result[tr.date]) {
+//     result[tr.date] = {
+//       total: totals[tr.date],
+//       transactions: []
+//     }
+
+//     result[tr.date].transactions.push(tr)
+//   }
+// }, new Map())
+
 export function transactionsRoute(req, res) {
   const {offset, limit, filters} = req
 
